@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:tns="http://www.example.org/Soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Soap/">
+  <xsd:include schemaLocation="Soap_InlineSchema1.xsd"/>
+  
+  <!-- BEGIN Global group petaining to all wsdl:message definitions -->
+  
+  <!-- END Global group -->
+  
+  <!-- BEGIN Message Definitions for the wsdl:operations  -->
+  
+  <!-- END Message Definitions -->
+  
+</xsd:schema>

@@ -1,0 +1,43 @@
+
+
+CREATE COMPUTE MODULE MF_Aggregation_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		 
+		  DECLARE productDetails CHARACTER '';
+    DECLARE pricingInfo CHARACTER '';
+
+    -- Iterate through the responses to extract the data
+    DECLARE I INTEGER 1;
+    DECLARE responseCount INTEGER CARDINALITY(InputRoot.XMLNSC.*[]);
+    
+    WHILE I <= responseCount DO
+      IF InputRoot.XMLNSC.*[I].RequestIdentifier = 'ServiceA' THEN
+        SET productDetails = InputRoot.XMLNSC.*[I].Data;
+      ELSEIF InputRoot.XMLNSC.*[I].RequestIdentifier = 'ServiceB' THEN
+        SET pricingInfo = InputRoot.XMLNSC.*[I].Data;
+      END IF;
+      SET I = I + 1;
+    END WHILE;
+    
+    -- Set the combined data into the output message
+    SET OutputRoot.JSON.Data.ProductDetails = productDetails;
+    SET OutputRoot.JSON.Data.PricingInfo = pricingInfo;
+	END;
+END MODULE;

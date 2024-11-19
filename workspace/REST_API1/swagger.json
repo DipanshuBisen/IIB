@@ -1,0 +1,31 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "REST_API1",
+    "version" : "1.0.0",
+    "description" : "REST_API1"
+  },
+  "paths" : {
+    "/get" : {
+      "get" : {
+        "operationId" : "getGet",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/rest_api1/v1"
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        
+  
+  <xsd:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+        
+  
+  <xsd:annotation>
+        		
+    
+    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            			
+      
+      <dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="recSepFieldsFmt:RecordEscapeScheme" occursCountKind="implicit" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+            		
+    
+    </xsd:appinfo>
+        	
+  
+  </xsd:annotation>
+    	
+  
+  <xsd:element dfdl:initiator="%#x7B;Details:%#x7B;" dfdl:terminator="}}" ibmSchExtn:docRoot="true" name="DFDL_RCD_JSON">
+        		
+    
+    <xsd:complexType>
+            			
+      
+      <xsd:sequence dfdl:separator="," dfdl:separatorSuppressionPolicy="anyEmpty">
+                				
+        			
+                
+        <xsd:element dfdl:initiator="ID:" dfdl:textNumberPattern="0" name="ID" type="xsd:integer"/>
+                        
+        <xsd:element dfdl:initiator="Name:" name="Name" type="xsd:string"/>
+                        
+        <xsd:element dfdl:initiator="Age:" dfdl:textNumberPattern="0" name="Age" type="xsd:integer"/>
+                    
+      </xsd:sequence>
+            		
+    
+    </xsd:complexType>
+        	
+  
+  </xsd:element>
+    
+
+</xsd:schema>

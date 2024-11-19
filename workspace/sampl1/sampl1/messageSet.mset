@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msgCoreModel:MRMessageSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:msgCoreModel="http://www.ibm.com/msgmodel/2003/MSGCoreModel" name="sampl1" parserDomain="XMLNSC" msetVersionNo="" currentMessageSetId="//%">
+  <MRMessageSetID repositoryId="-1005621613" messageSetId="1"/>
+  <otherSupportedDomains parserDomain="XMLNS"/>
+</msgCoreModel:MRMessageSet>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="Sec" type="xsd:string"/>
+  <xsd:element name="Branch" type="xsd:string"/>
+  <xsd:element name="College">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Name"/>
+        <xsd:element ref="City"/>
+        <xsd:element ref="Branch"/>
+        <xsd:element ref="Sec"/>
+        <xsd:element ref="Topic"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="City" type="xsd:string"/>
+  <xsd:element name="Topic" type="xsd:string"/>
+  <xsd:element name="Name" type="xsd:string"/>
+</xsd:schema>

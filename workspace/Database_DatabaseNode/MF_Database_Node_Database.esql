@@ -1,0 +1,13 @@
+
+
+CREATE DATABASE MODULE MF_Database_Node_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL var();
+		RETURN TRUE;
+	END;
+      CREATE PROCEDURE var() BEGIN
+      	DECLARE Select_Table CHARACTER;
+      	SET OutputRoot.JSON.Data.Select_Table[]='(SELECT * FROM Database.EMPLOYEES12)';
+      END;
+END MODULE;

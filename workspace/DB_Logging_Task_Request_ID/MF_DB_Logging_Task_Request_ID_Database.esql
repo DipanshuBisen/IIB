@@ -1,0 +1,20 @@
+
+
+CREATE DATABASE MODULE MF_DB_Logging_Task_Request_ID_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE query CHARACTER;
+		
+		DECLARE Request_id CHARACTER Root.MQRFH2.usr.requestid;
+		DECLARE Payload BLOB Root.XMLNSC.Root.payload;
+		DECLARE Payload_Type CHARACTER Root.MQRFH2.usr.Payload_Type;
+		
+		
+		SET query = 'INSERT INTO LOG_STORE(PAYLOAD_ID,REQUEST_ID,PAYLOAD,CREATED_ON,PAYLOAD_TYPE) VALUES(LOG_SEQ.nextval,?,?,?,?)';
+		PASSTHRU(query,Request_id,Payload,CURRENT_TIMESTAMP,Payload_Type);
+		
+		--RETURN TRUE;
+	END;
+
+END MODULE;

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Data": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Age": {
+          "type": "integer"
+        },
+        "College": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Name",
+        "Age",
+        "College"
+      ]
+    }
+  },
+  "required": [
+    "Data"
+  ]
+}

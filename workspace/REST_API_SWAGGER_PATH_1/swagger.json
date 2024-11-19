@@ -1,0 +1,32 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "REST_API_SWAGGER_PATH_1",
+    "version" : "1.0.0",
+    "description" : "REST_API_SWAGGER_PATH_1"
+  },
+  "paths" : {
+    "/get/{id}" : {
+      "get" : {
+        "operationId" : "getId",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve id",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "id",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/rest_api_swagger_path_1/v1"
+}

@@ -1,0 +1,162 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE COMPUTE MODULE MF_FieldName_Function_Task_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE it REFERENCE TO InputRoot.XMLNSC.Root.Order.Items.Item[1];
+		DECLARE inref REFERENCE TO InputRoot.XMLNSC.Root;
+
+		CREATE FIELD OutputRoot.XMLNSC.Root;
+		DECLARE outref REFERENCE TO OutputRoot.XMLNSC.Root;
+		--DECLARE i INTEGER 1;
+
+
+		IF FIELDNAME(inref.Order) IS NOT NULL THEN
+			--For OrderID
+			IF FIELDNAME(inref.Order.OrderID) IS NOT NULL THEN
+				SET outref.Order.OrderID=inref.Order.OrderID;
+
+			ELSE
+				SET outref.Order.OrderID='OrderID is Empty';
+			END IF;
+			--For Customer
+
+			IF FIELDNAME(inref.Order.Customer) IS NOT NULL THEN
+
+				IF FIELDNAME(inref.Order.Customer.CustomerID) IS NOT NULL THEN
+					SET outref.Order.Customer.CustomerID=inref.Order.Customer.CustomerID;
+				ELSE
+					SET outref.Order.Customer.CustomerID='CustomerID is missing';
+				END IF;
+
+				IF FIELDNAME(inref.Order.Customer.Name) IS NOT NULL THEN
+					SET outref.Order.Customer.Name=inref.Order.Customer.Name;
+				ELSE
+					SET outref.Order.Customer.Name='Name is missing';
+				END IF;
+
+				IF FIELDNAME(inref.Order.Customer.Address) IS NOT NULL THEN
+					IF FIELDNAME(inref.Order.Customer.Address.Street) IS NOT NULL THEN
+						SET outref.Order.Customer.Address.Street=inref.Order.Customer.Address.Street;
+					ELSE
+						SET outref.Order.Customer.Address.Street='Street is missing';
+					END IF;
+
+					IF FIELDNAME(inref.Order.Customer.Address.City) IS NOT NULL THEN
+						SET outref.Order.Customer.Address.City=inref.Order.Customer.Address.City;
+					ELSE
+						SET outref.Order.Customer.Address.City='City name is missing';
+					END IF;
+
+					IF FIELDNAME(inref.Order.Customer.Address.State) IS NOT NULL THEN
+						SET outref.Order.Customer.Address.State=inref.Order.Customer.Address.State;
+					ELSE
+						SET outref.Order.Customer.Address.State='State name is missing';
+					END IF;
+
+					IF FIELDNAME(inref.Order.Customer.Address.Zip) IS NOT NULL THEN
+						SET outref.Order.Customer.Address.Zip=inref.Order.Customer.Address.Zip;
+					ELSE
+						SET outref.Order.Customer.Address.Zip='Zip code is missing';
+					END IF;
+				ELSE
+					SET outref.Order.Customer.Address='Address is missing';
+				END IF;
+
+			ELSE
+				SET outref.Order.Customer='Customer is not present';
+			END IF;
+			-- For Item
+			WHILE LASTMOVE(it) DO
+				
+				IF FIELDNAME(inref.Order.Items) IS NOT NULL THEN
+					IF FIELDNAME(inref.Order.Items.Item) IS NOT NULL THEN
+						CREATE LASTCHILD OF OutputRoot.XMLNSC.Root.Order.Items NAME 'Item';
+						IF FIELDNAME(inref.Order.Items.Item.ProductID) IS NOT NULL THEN
+							SET outref.Order.Items.Item.ProductID=inref.Order.Items.Item.ProductID;
+						ELSE
+							SET outref.Order.Items.Item.ProductID='ProductID is missing';
+						END IF;
+
+						IF FIELDNAME(inref.Order.Items.Item.ProductName) IS NOT NULL THEN
+							SET outref.Order.Items.Item.ProductName=inref.Order.Items.Item.ProductName;
+						ELSE
+							SET outref.Order.Items.Item.ProductName='ProductName is missing';
+						END IF;
+
+						IF FIELDNAME(inref.Order.Items.Item.Quantity) IS NOT NULL THEN
+							SET outref.Order.Items.Item.Quantity=inref.Order.Items.Item.Quantity;
+						ELSE
+							SET outref.Order.Items.Item.Quantity='Quantity is missing';
+						END IF;
+
+						IF FIELDNAME(inref.Order.Items.Item.Price) IS NOT NULL THEN
+							SET outref.Order.Items.Item.Price=inref.Order.Items.Item.Price;
+						ELSE
+							SET outref.Order.Items.Item.Price='Price is missing';
+						END IF;
+					ELSE
+						SET outref.Order.Items.Item='Item is empty';
+					END IF;					
+
+
+				ELSE
+					SET outref.Order.Items='Items is missing';
+				END IF;
+
+				MOVE it  NEXTSIBLING;
+			END WHILE;
+		ELSE
+			SET outref.Order ='Order is Empty';
+		END IF;
+
+
+		IF FIELDNAME(inref.Payment) IS NOT NULL THEN
+			IF FIELDNAME(inref.Payment.Method) IS NOT NULL THEN
+				SET outref.Payment.Method = inref.Payment.Method;
+			ELSE
+				SET outref.Payment.Method ='Method is not given';
+			END IF;
+
+			IF FIELDNAME(inref.Payment.Amount) IS NOT NULL THEN
+				SET outref.Payment.Amount = inref.Payment.Amount;
+			ELSE
+				SET outref.Payment.Amount ='Amount is not given';
+			END IF;
+		ELSE
+			SET outref.Payment='Payment is not done';
+		END IF;
+	END;
+END MODULE;

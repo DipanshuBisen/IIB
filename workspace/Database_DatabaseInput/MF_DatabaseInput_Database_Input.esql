@@ -1,0 +1,190 @@
+DECLARE ns NAMESPACE 'http://xe/system';
+
+
+/*
+ * This DatabaseEvent module implements the ESQL code invoked from a DatabaseInput node to handle
+ * events as they move through the states of New->Ready->Dispatched->Complete.
+ *
+ * NOTE: Events that result in unhandled exceptions in the message flow are moved to the Failed
+ * state. "Unhandled" means either that the catch terminal was not wired, or that the catch
+ * terminal threw an exception.  If an exception is unhandled, the transaction is rolled back.
+ * If the exception is handled, even if it is handled on the catch terminal, the transaction is
+ * committed.
+ *
+ * Events are moved to the Failed state after rollback (or after a number of retries, depending 
+ * on the settings on the Retry panel).  Events in the Failed state are propagated to the Failure
+ * terminal.  If they are not handled on the failure terminal, they are discarded.  They are
+ * still in the EventTable, and so are not lost.
+ *
+ * If you are using a database table as your event store, you can convert this template to deployable
+ * code by replacing the substitution strings. Substitution strings in this module are enclosed by
+ * < and > characters.
+ * The following substitution strings are used:
+ *   <MySchemaName>                 - the database schema name.
+ *   <MyEventTableName>             - the database table used as your event store.
+ *   <MyEventTablePrimaryKey>       - the primary key of the database table used as the event store.
+ *   <MyStatusColumnName>           - the name of a column, if you update a column in the event table
+ *                                    to indicate that the event has been processed.
+ *                                    If you delete events from the event table after processing, you
+ *                                    do not need <MyStatusColumnName>.
+ *   <MyNewEventStatusValue>        - the value written to the status column when the event is first
+ *                                    added. You need this only if you use <MyStatusColumnName>.
+ *   <MyProcessedEventStatusValue>  - the value written to the status column after the event has been
+ *                                    processed. You need this only if you use <MyStatusColumnName>.
+ *   <MyApplicationTableName>       - the name of the table that includes the changed data to be processed
+ *                                    by the DatabaseInput node.
+ *   <MyEventTableForeignKey>       - the column in the event table that references the row in the application
+ *                                    table containing the changed data to be processed by the DatabaseInput
+ *                                    node. This is typically the primary key of the application table.
+ *   <MyApplicationTablePrimaryKey> - the primary key of the database table used as the application table.
+ * When you have finished editing the ESQL, set the data source and ESQL module properties on the basic tab
+ * of this node.
+ */
+CREATE DATABASEEVENT MODULE MF_DatabaseInput_Database_Input
+
+	/*
+	 * ReadEvents populates the NewEvents structure with event data read from the event table.
+	 * ReadEvents is called after all current events have been dispatched.
+	 * ReadEvents is called on a new transaction that is a separate transaction from the message
+	 * flow, and that runs before the message flow transaction.
+	 *
+	 * After ReadEvents completes:
+	 * - the current transaction is committed to ensure that any database locks obtained during
+	 *   ReadEvents are released.
+	 * - All events in NewEvents are moved to Ready state.  This means that they are ready to be
+	 *   dispatched.
+	 *
+	 * Parameters:
+	 * IN NewEvents REFERENCE.  This is a reference to a ROW. ReadEvents must create children of
+	 *                          this ROW for each event that is being processed.
+	 *                          Each child must include a 'Usr' field and a 'Key' field, with the
+	 *                          field names being case sensitive.
+	 */
+	 CREATE PROCEDURE ReadEvents( IN NewEvents REFERENCE )
+	 BEGIN
+		DECLARE EXIT HANDLER FOR SQLSTATE LIKE 'D%'
+		BEGIN
+			RESIGNAL; /* pass the error back to the node */
+
+			/* To choose to handle Database errors yourself, delete the RESIGNAL statement above
+			 * and uncomment the following procedure call */
+--			CALL HandleDatabaseError('ReadEvents');
+		END;
+
+		/*
+		 * Here you select all unprocessed events from the event store.
+		 * You only read the events here; you delete them in EndEvent.
+		 * In general, it is not good practice to delete or update the events here because this
+		 * transaction will be committed even before the BuildMessage procedure is called.
+		 * Under certain circumstances, for example, if you do not need assured delivery of the
+		 * events, it is acceptable to update or delete the events here. This means that
+		 * the deletion or update is committed before the message flow processes the in-memory
+		 * copies of these events. If the broker, execution group, or message flow is stopped
+		 * or redeployed in the meantime, the in-memory copy is lost, and the events are never
+		 * processed by the flow.
+		 *
+		 * NOTE: You do not need to filter out events that are currently dispatched here.
+		 *       The framework ensures that events are not duplicated by comparing the 'Key' field
+		 *       to the 'Key' field of dispatched events.
+		 */
+
+		--@!{ ******************** "ReadEvents" autogenerated code (1) ********************
+		-- Please do not delete the start and end annotation comments if you want the tool to generate code
+		-- for you. Any code that you add or change inside the start and end annotation comments will be lost
+		-- in your next code generation.
+		SET NewEvents.Event[] = SELECT EMP_EVENT.EID AS Key,
+		                        EMP_EVENT.EID AS Usr.EID,
+		                        EMP_EVENT.EVENT_DESC AS Usr.EVENT_DESC,
+		                        EMP_EVENT.EVENTID AS Usr.EVENTID
+		                        FROM Database.SYSTEM.EMP_EVENT;
+		--@!} ******************** "ReadEvents" autogenerated code (1) ********************
+	END;
+
+
+	/*
+	 * BuildMessage builds the message to be propagated to the flow.
+	 * Typically, you use the event data for the current dispatched event to look up data in
+	 * the application table, and copy that data into the message.
+	 * BuildMessage is called while some events are in the Ready state.
+	 * BuildMessage is called as part of the message flow transaction. This transaction also
+	 * involves EndEvent.
+	 *
+	 * After BuildMessage returns, the message is propagated to the message flow.
+	 *
+	 * Parameters:
+	 * IN DispatchedEvent REFERENCE.  A Reference to a ROW containing the event data for the
+	 *                                current dispatched event. This is a copy of one of the 
+	 *                                events added to NewEvents by ReadEvents procedure.
+	 */
+	CREATE PROCEDURE BuildMessage(IN DispatchedEvent REFERENCE)
+	BEGIN
+		DECLARE EXIT HANDLER FOR SQLSTATE LIKE 'D%'
+		BEGIN
+			RESIGNAL; /* pass the error back to the node */
+
+			/* To choose to handle Database errors yourself, delete the RESIGNAL statement above
+			 * and uncomment the following procedure call */
+--			CALL HandleDatabaseError('BuildMessage');
+		END;
+		/* Here you use the event data in the local environment to retrieve the application data. */
+
+		--@!{ ******************** "BuildMessage" autogenerated code (1) ********************
+		-- Please do not delete the start and end annotation comments if you want the tool to generate code
+		-- for you. Any code that you add or change inside the start and end annotation comments will be lost
+		-- in your next code generation.
+		SET Root.DataObject.ns:EMPLOYEES12[] =
+				SELECT EMPLOYEES12.EID,
+					EMPLOYEES12.EMPNAME,
+					EMPLOYEES12.DESIGNATION,
+					EMPLOYEES12.ADDRESS
+					FROM Database.SYSTEM.EMPLOYEES12
+					WHERE EMPLOYEES12.EID = DispatchedEvent.Usr.EID;
+		--@!} ******************** "BuildMessage" autogenerated code (1) ********************
+		RETURN;
+	END;
+
+
+	/*
+	 * EndEvent updates the event table to record the event as processed.
+	 * EndEvent is called after the message flow has processed the event.
+	 * EndEvent is called as part of the message flow transaction.  This transaction also involves
+	 * BuildMessage. The transaction will be committed when this procedure ends.
+	 *
+	 * Parameters:
+	 * IN DispatchedEvent REFERENCE.  A Reference to a ROW containing the event data for the current
+	 *                                dispatched event. This is a copy of one of the events added to
+	 *                                NewEvents by ReadEvents procedure.
+	 */
+	CREATE PROCEDURE EndEvent(IN DispatchedEvent REFERENCE)
+	BEGIN
+		DECLARE EXIT HANDLER FOR SQLSTATE LIKE 'D%'
+		BEGIN
+			RESIGNAL; /* pass the error back to the node */
+
+			/* To choose to handle Database errors yourself, delete the RESIGNAL statement above
+			 * and uncomment the following procedure call */
+--			CALL HandleDatabaseError('EndEvent');
+
+		END;
+		/* Here you update the event table to ensure that this event is not processed again. */
+
+		--@!{ ******************** "EndEvent" autogenerated code (1) ********************
+		-- Please do not delete the start and end annotation comments if you want the tool to generate code
+		-- for you. Any code that you add or change inside the start and end annotation comments will be lost
+		-- in your next code generation.
+
+		DELETE FROM Database.SYSTEM.EMP_EVENT
+				WHERE EMP_EVENT.EID = DispatchedEvent.Usr.EID;
+		--@!} ******************** "EndEvent" autogenerated code (1) ********************
+		RETURN;
+	END;
+
+
+	CREATE PROCEDURE HandleDatabaseError( IN FunctionName CHARACTER )
+	BEGIN
+		/* Throw a different exception; this could be changed. */
+		DECLARE message CHARACTER 'Exception occured calling Database Input Node function: ' || FunctionName;
+		THROW USER EXCEPTION VALUES( SQLCODE, SQLSTATE, SQLNATIVEERROR, SQLERRORTEXT, message );
+	END;
+
+END MODULE;

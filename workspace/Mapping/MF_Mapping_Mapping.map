@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="default" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0">
+    <input path="/College.xsd"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var1"/>
+    <output derivedFrom="MB:JSON_schema_in_json_file" path="/JS.schema.json" var="var"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="MF_Mapping_Mapping">
+        <input path="mb:msg(College,assembly,XMLNSC,Properties)" var="MessageAssembly"/>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var1/mb:msg(JSON,assembly,JSON,Properties)" var="MessageAssembly1">
+            <cast derivedFrom="MB:JSON_TYPE" path="$MessageAssembly1/JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}JS.schema_JsonType" ref="var"/>
+        </output>
+        <move>
+            <input path="$MessageAssembly/Properties"/>
+            <output path="$MessageAssembly1/Properties"/>
+        </move>
+        <function automap="true" ref="concat">
+            <input path="$MessageAssembly/College/Topic" var="Topic"/>
+            <input path="$MessageAssembly/Properties/Topic" var="Topic1"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/College/Topic"/>
+        </function>
+        <move automap="true">
+            <input path="$MessageAssembly/College/Name"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/College/Name"/>
+        </move>
+        <move automap="true">
+            <input path="$MessageAssembly/College/City"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/College/City"/>
+        </move>
+        <move automap="true">
+            <input path="$MessageAssembly/College/Branch"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/College/Branch"/>
+        </move>
+        <move automap="true">
+            <input path="$MessageAssembly/College/Sec"/>
+            <output path="$MessageAssembly1/JSON/spath('Data',2)/College/Sec"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

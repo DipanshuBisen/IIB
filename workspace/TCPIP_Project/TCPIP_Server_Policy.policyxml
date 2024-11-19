@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="TCPIPServer" policyName="TCPIP_Server_Policy" policyTemplate="TCPIPServer">
+    <Port>7778</Port>
+    <SSLProtocol></SSLProtocol>
+    <SSLCiphers></SSLCiphers>
+    <SSLClientAuth></SSLClientAuth>
+    <SSLKeyAlias></SSLKeyAlias>
+    <MaximumConnections>100</MaximumConnections>
+    <MaxReceiveRecordBytes>100000000</MaxReceiveRecordBytes>
+    <ExpireConnectionSec>-1</ExpireConnectionSec>
+    <SO_RCVBUF>0</SO_RCVBUF>
+    <SO_SNDBUF>0</SO_SNDBUF>
+    <SO_KEEPALIVE>false</SO_KEEPALIVE>
+    <TCP_NODELAY>true</TCP_NODELAY>
+    <TrafficClass>-1</TrafficClass>
+    <SO_LINGER>false</SO_LINGER>
+    <SO_LINGER_TIMEOUT_SEC>-1</SO_LINGER_TIMEOUT_SEC>
+    <CloseWithUnprocessedData>false</CloseWithUnprocessedData>
+    <EnableLookups>true</EnableLookups>
+  </policy>
+</policies>

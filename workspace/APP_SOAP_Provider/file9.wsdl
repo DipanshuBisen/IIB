@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/file9/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="file9" targetNamespace="http://www.example.org/file9/">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="file9SOAP" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    
+    
+  
+  <wsdl:types>
+            
+          
+    
+    <xsd:schema xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" targetNamespace="http://www.example.org/file9/">
+      
+      <xsd:include schemaLocation="file9_InlineSchema1.xsd"/>
+      
+    </xsd:schema>
+            
+  
+  </wsdl:types>
+      
+  
+  <wsdl:message name="NewOperationRequest">
+            
+    
+    <wsdl:part element="tns:NewOperation" name="parameters"/>
+          
+  
+  </wsdl:message>
+      
+  
+  <wsdl:message name="NewOperationResponse">
+            
+    
+    <wsdl:part element="tns:NewOperationResponse" name="parameters"/>
+          
+  
+  </wsdl:message>
+      
+  
+  <wsdl:portType name="file9">
+            
+    
+    <wsdl:operation name="NewOperation">
+                  
+      
+      <wsdl:input message="tns:NewOperationRequest"/>
+                  
+      
+      <wsdl:output message="tns:NewOperationResponse"/>
+                
+    
+    </wsdl:operation>
+          
+  
+  </wsdl:portType>
+      
+  
+  <wsdl:binding name="file9SOAP" type="tns:file9">
+            
+    
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+            
+    
+    <wsdl:operation name="NewOperation">
+                  
+      
+      <soap:operation soapAction="http://www.example.org/file9/NewOperation"/>
+                  
+      
+      <wsdl:input>
+                        
+        
+        <soap:body use="literal"/>
+                      
+      
+      </wsdl:input>
+                  
+      
+      <wsdl:output>
+                        
+        
+        <soap:body use="literal"/>
+                      
+      
+      </wsdl:output>
+                
+    
+    </wsdl:operation>
+          
+  
+  </wsdl:binding>
+      
+  
+  <wsdl:service name="file9">
+            
+    
+    <wsdl:port binding="tns:file9SOAP" name="file9SOAP">
+                  
+      
+      <soap:address location="http://localhost:7800/path"/>
+                
+    
+    </wsdl:port>
+          
+  
+  </wsdl:service>
+    
+
+</wsdl:definitions>

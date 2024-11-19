@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy:Deploy xmlns:deploy="http://www.ibm.com/xmlns/prod/wmb/deploy/6.0.0" overrideConfigurableProperties="false" includeESQL="false">
+  <deployables>
+    <deployable deployed="true" barResourceTimeStamp="1725493726800" workspaceResource="/Log_DB_Logging_Consumer/MF_DB_Logging_Consumer.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Log_DB_Logging_Consumer\MF_DB_Logging_Consumer.msgflow.&#xA;Successfully added file Log_DB_Logging_Consumer\MF_DB_Logging_Consumer.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="MF_DB_Logging_Consumer.msgflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725493426916" workspaceResource="/Log_DB_Logging_Consumer/MF_DB_Logging_Consumer_Compute.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Log_DB_Logging_Consumer\MF_DB_Logging_Consumer_Compute.esql.&#xA;Successfully added file Log_DB_Logging_Consumer\MF_DB_Logging_Consumer_Compute.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="MF_DB_Logging_Consumer_Compute.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725494287826" workspaceResource="/Log_DB_Logging_Consumer/MF_DB_Logging_Consumer_Compute1.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Log_DB_Logging_Consumer\MF_DB_Logging_Consumer_Compute1.esql.&#xA;Dependent ESQL file MF_DB_Logging_Consumer_Compute.esql is added to the BAR file.&#xA;&#xA;Successfully added file Log_DB_Logging_Consumer\MF_DB_Logging_Consumer_Compute1.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="MF_DB_Logging_Consumer_Compute1.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725493736926" workspaceResource="/Log_DB_Logging_Consumer/MF_DB_Logging_Provider.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Log_DB_Logging_Consumer\MF_DB_Logging_Provider.msgflow.&#xA;Successfully added file Log_DB_Logging_Consumer\MF_DB_Logging_Provider.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="MF_DB_Logging_Provider.msgflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725494306567" workspaceResource="/Log_DB_Logging_Consumer/MF_DB_Logging_Provider_Compute.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Log_DB_Logging_Consumer\MF_DB_Logging_Provider_Compute.esql.&#xA;Successfully added file Log_DB_Logging_Consumer\MF_DB_Logging_Provider_Compute.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="MF_DB_Logging_Provider_Compute.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1725392208534" workspaceResource="/Log_DB_Logging_Consumer/application.descriptor">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Log_DB_Logging_Consumer\application.descriptor.&#xA;Successfully added file Log_DB_Logging_Consumer\application.descriptor to BAR file.&#xA;Elapsed time: 0 second(s).&#xA;&#xA;Successfully added file Log_DB_Logging_Consumer\application.descriptor to BAR file.&#xA;" severity="0"/>
+      <barEntry name="application.descriptor"/>
+    </deployable>
+  </deployables>
+</deploy:Deploy>

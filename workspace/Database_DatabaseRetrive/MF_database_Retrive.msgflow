@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmDatabaseRetrieve.msgnode="ComIbmDatabaseRetrieve.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="MF_database_Retrive.msgflow" nsPrefix="MF_database_Retrive.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="MF_database_Retrive" bundleName="MF_database_Retrive" pluginId="Database_DatabaseRetrive"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Database_DatabaseRetrive/icons/full/obj16/MF_database_Retrive.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Database_DatabaseRetrive/icons/full/obj30/MF_database_Retrive.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="321,141" dataSourceName="{DATBASE_R}:Database_Database_retrive" sqlQuery="SELECT EMPLOYEES12.EMPNAME&#xA;FROM EMPLOYEES12&#xA;WHERE EMPLOYEES12.EID = ?&#xA;ORDER BY EMPLOYEES12.EMPNAME ASC" tableNameComboValues="0,0~EMPLOYEES12" columnNameComboValues="1,0~EID,EMPNAME" operatorComboValues="0,2~=" valueTypeComboValues="0,2~Element" columnValueComboValues="0~EMPLOYEES12.EMPNAME">
+        <translation xmi:type="utility:ConstantString" string="Database Retrieve"/>
+        <queryElements tableName="EMPLOYEES12" columnName="EMPNAME" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="EMPLOYEES12" columnName="EID" operator="=" valueType="Element" value="$InputRoot/XMLNSC/EMPLOYEES12/EID=?"/>
+        <dataElements columnName="EMPLOYEES12.EMPNAME" messageElement="$OutputRoot/XMLNSC/EMPLOYEES12/EID"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="78,154" URLSpecifier="/path" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="680,160">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

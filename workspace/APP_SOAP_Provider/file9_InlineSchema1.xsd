@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/file9/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/file9/">
+          
+  
+  <xsd:element ibmSchExtn:docRoot="true" name="NewOperation">
+                
+    
+    <xsd:complexType>
+                      
+      
+      <xsd:sequence>
+                          	
+        
+        <xsd:element name="a" type="xsd:int"/>
+                          	
+        
+        <xsd:element name="b" type="xsd:int"/>
+                          
+      
+      </xsd:sequence>
+                    
+    
+    </xsd:complexType>
+              
+  
+  </xsd:element>
+          
+  
+  <xsd:element ibmSchExtn:docRoot="true" name="NewOperationResponse">
+                
+    
+    <xsd:complexType>
+                      
+      
+      <xsd:sequence>
+                            
+        
+        <xsd:element name="sub" type="xsd:int"/>
+                          
+      
+      </xsd:sequence>
+                    
+    
+    </xsd:complexType>
+              
+  
+  </xsd:element>
+        
+
+</xsd:schema>

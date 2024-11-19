@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\WS_Security_Authentication_New\WS_NEWFile.wsdl
+
+The WSDL import will proceed with bindings WS_NEWFileSOAP.
+Creating wsdl schema document for file:///C:/Users/Sreenivas Bandaru/IBM/ACET12/workspace/WS_Security_Authentication_New/WS_NEWFile.wsdl.
+Parsing wsdl binding {http://www.example.org/WS_NEWFile/}WS_NEWFileSOAP.
+Parsing wsdl binding input NewOperation.
+Parsing wsdl binding output NewOperation.
+Processing doc style for operation NewOperation.
+Populating WSDL schema WS_NEWFile.xsd.
+Creating file WS_NEWFile.xsd in the workspace.
+Creating file WS_NEWFile_InlineSchema1.xsd in the workspace.
+Copying source WSDL WS_NEWFile.wsdl to WS_NEWFile.wsdl.
+
+Elapsed time processing this message definition file: 0.413 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\APP_SoapNew\SoapNew.wsdl
+
+The WSDL import will proceed with bindings SoapNewSOAP.
+Creating wsdl schema document for file:///C:/Users/Sreenivas Bandaru/IBM/ACET12/workspace/APP_SoapNew/SoapNew.wsdl.
+Parsing wsdl binding {http://www.example.org/SoapNew/}SoapNewSOAP.
+Parsing wsdl binding input NewOperation.
+Parsing wsdl binding output NewOperation.
+Processing doc style for operation NewOperation.
+Populating WSDL schema SoapNew.xsd.
+Creating file SoapNew.xsd in the workspace.
+Creating file SoapNew_InlineSchema1.xsd in the workspace.
+Copying source WSDL SoapNew.wsdl to SoapNew.wsdl.
+
+Elapsed time processing this message definition file: 0.192 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

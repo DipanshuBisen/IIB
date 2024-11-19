@@ -1,0 +1,21 @@
+
+
+Importing file: C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\WS_Security_Authentication_SOAP\WS_Security_WSDL.wsdl
+
+The WSDL import will proceed with bindings WS_Security_WSDLSOAP.
+Creating wsdl schema document for file:///C:/Users/Sreenivas Bandaru/IBM/ACET12/workspace/WS_Security_Authentication_SOAP/WS_Security_WSDL.wsdl.
+Parsing wsdl binding {http://www.example.org/WS_Security_WSDL/}WS_Security_WSDLSOAP.
+Parsing wsdl binding input NewOperation.
+Parsing wsdl binding output NewOperation.
+Processing doc style for operation NewOperation.
+Populating WSDL schema WS_Security_WSDL.xsd.
+Creating file WS_Security_WSDL.xsd in the workspace.
+Copying source WSDL WS_Security_WSDL.wsdl to WS_Security_WSDL.wsdl.
+
+Elapsed time processing this message definition file: 3.094 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "College": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "Branch": {
+          "type": "string"
+        },
+        "Sec": {
+          "type": "string"
+        },
+        "Topic": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Name",
+        "City",
+        "Branch",
+        "Sec",
+        "Topic"
+      ]
+    }
+  },
+  "required": [
+    "College"
+  ]
+}

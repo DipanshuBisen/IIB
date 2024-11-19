@@ -1,0 +1,23 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "REST_API4",
+    "version" : "1.0.0",
+    "description" : "REST_API4"
+  },
+  "paths" : {
+    "/delete" : {
+      "delete" : {
+        "operationId" : "deleteDelete",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from delete"
+      }
+    }
+  },
+  "basePath" : "/rest_api4/v1"
+}

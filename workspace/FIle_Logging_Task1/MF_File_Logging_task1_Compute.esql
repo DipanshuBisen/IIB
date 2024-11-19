@@ -1,0 +1,52 @@
+
+
+
+DECLARE external_var EXTERNAL CHARACTER 'C:\File_Logging_task1\Log4jConfigurationFile.xml';
+DECLARE var1 BOOLEAN;
+CREATE COMPUTE MODULE MF_File_Logging_task1_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL initLog4j(external_var)INTO var1;
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		
+		DECLARE in_data,out_data CHARACTER; --Declares two variables to hold the input and output data as character strings.
+		
+		SET OutputRoot.JSON.Data.Root = InputRoot.XMLNSC.Root;
+		--Converts the input XML and output message to a character string with appropriate encoding and CCSID
+		
+		SET in_data = CAST(ASBITSTREAM(InputRoot.XMLNSC CCSID InputRoot.Properties.CodedCharSetId) AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
+		SET out_data = CAST(ASBITSTREAM(OutputRoot.JSON.Data CCSID InputRoot.Properties.CodedCharSetId) AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
+		
+		
+		CALL WriteLogFile(MessageFlowLabel, 'Logger1', 'DEBUG','Input_Data:' || in_data) INTO var1; --Logs the input data at the DEBUG level using the WriteLogFile function.
+		CALL WriteLogFile(MessageFlowLabel, 'Logger1', 'DEBUG', 'Output_Data' || out_data) INTO var1; --Logs the output data at the DEBUG level using the WriteLogFile function.
+		-- MessageFlowLabel is passed as part of the log entry to indicate the specific message flow that generated the log message.
+	    END;
+	END MODULE;
+-- Define a Java function named WriteLogFile for writing log entries.
+		CREATE FUNCTION WriteLogFile( IN COMPONENT_NAME CHARACTER,IN LOGGER_NAME CHARACTER, IN LEVEL CHARACTER, IN TEXT CHARACTER )
+		RETURNS BOOLEAN
+		LANGUAGE JAVA --Indicates that this function is implemented in Java.
+		EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.log"; --Specifies the fully qualified Java class and method used for logging.
+		
+		
+-- Define a Java function named initLog4j for initializing Log4j with the provided configuration file.
+		CREATE FUNCTION initLog4j( IN CONFIG_FILE_NAME CHARACTER )
+		RETURNS BOOLEAN
+		LANGUAGE JAVA
+		EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.initLog4j"; -- Specifies the fully qualified Java class and method used for initialization.

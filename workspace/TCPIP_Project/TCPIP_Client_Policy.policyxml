@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="TCPIPClient" policyName="TCPIP_Client_Policy" policyTemplate="TCPIPClient">
+    <Hostname>localhost</Hostname>
+    <Port>7778</Port>
+    <SSLProtocol></SSLProtocol>
+    <SSLCiphers></SSLCiphers>
+    <MinimumConnections>5</MinimumConnections>
+    <MaximumConnections>100</MaximumConnections>
+    <MaxReceiveRecordBytes>100000000</MaxReceiveRecordBytes>
+    <ExpireConnectionSec>-1</ExpireConnectionSec>
+    <SO_RCVBUF>0</SO_RCVBUF>
+    <SO_SNDBUF>0</SO_SNDBUF>
+    <SO_KEEPALIVE>false</SO_KEEPALIVE>
+    <TCP_NODELAY>true</TCP_NODELAY>
+    <TrafficClass>-1</TrafficClass>
+    <SO_LINGER>false</SO_LINGER>
+    <SO_LINGER_TIMEOUT_SEC>-1</SO_LINGER_TIMEOUT_SEC>
+    <UseUniqueConnectionPool>false</UseUniqueConnectionPool>
+    <CloseWithUnprocessedData>false</CloseWithUnprocessedData>
+    <AlternativeAddresses></AlternativeAddresses>
+    <EnableLookups>true</EnableLookups>
+  </policy>
+</policies>

@@ -1,0 +1,62 @@
+# Ignore Toolkit configuration files
+*.launch
+.metadata/
+*.iml
+.project
+.classpath
+.settings/
+.idea/
+
+# Ignore build artifacts
+bin/
+target/
+output/
+gen/
+build/
+logs/
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore DFDL test artifacts
+*.dfdl.xsd.xml
+*.dfdl.xsd.xsd
+
+# Ignore temporary or generated files
+*.bak
+*.swp
+*.tmp
+*.log
+*.lock
+*.backup
+*.history
+
+# Ignore deployment files
+*.bar
+*.deploy
+*.mf
+
+# Ignore test coverage and debug data
+*.coverage
+*.trace
+*.debug
+
+# Ignore properties and credential files (sensitive data)
+*.properties
+*.config
+*.env
+
+# Ignore runtime files
+integration_server/
+node_default_resources/
+.cache/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+*.lnk
+
+# Ignore Git-specific files
+*.orig
+*.rej

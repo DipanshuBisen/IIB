@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmLog.msgnode="ComIbmLog.msgnode" xmlns:ComIbmValidate.msgnode="ComIbmValidate.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="MF_Log.msgflow" nsPrefix="MF_Log.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="MF_Log" bundleName="MF_Log" pluginId="ErrorHandling_Log"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/ErrorHandling_Log/icons/full/obj16/MF_Log.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/ErrorHandling_Log/icons/full/obj30/MF_Log.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="70,150" URLSpecifier="/path" messageDomainProperty="JSON" messageSetProperty="Log_Node.schema.json">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="790,170">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLog.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="190,150" logLevel="Info" logMessage="Received an oreder in flow{{$flowDetails.applicationName}}/{{$flowDetails.flowName}}at {{$flowDetails.flowInvocationTime}}">
+        <translation xmi:type="utility:ConstantString" string="Log"/>
+        <requestMap map="{&quot;mappings&quot;:[{&quot;customMessages&quot;:{&quot;mappings&quot;:[{&quot;Object&quot;:{&quot;template&quot;:&quot;{{$mappingInput_Custom}}&quot;}}]}}],&quot;$map&quot;:&quot;http://ibm.com/appconnect/map/v1&quot;,&quot;input&quot;:[{&quot;variable&quot;:&quot;mappingInput_InputRoot&quot;,&quot;$ref&quot;:&quot;#/mappingInputs/InputRoot&quot;},{&quot;variable&quot;:&quot;mappingInput_InputLocalEnvironment&quot;,&quot;$ref&quot;:&quot;#/mappingInputs/InputLocalEnvironment&quot;},{&quot;variable&quot;:&quot;mappingInput_Custom&quot;,&quot;$ref&quot;:&quot;#/mappingInputs/Custom&quot;},{&quot;variable&quot;:&quot;flowDetails&quot;,&quot;$ref&quot;:&quot;#/flowDetails&quot;}],&quot;customSchemas&quot;:{&quot;properties.`customMessages`&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;Object&quot;:{&quot;type&quot;:&quot;string&quot;}}}}}"/>
+        <mappingInput inputName="InputRoot" inputLocation="$InputRoot" schemaLocation="" schemaRoot=""/>
+        <mappingInput inputName="InputLocalEnvironment" inputLocation="$InputLocalEnvironment" schemaLocation="" schemaRoot=""/>
+        <mappingInput inputName="Custom" inputLocation="$InputRoot/JSON/Data" messageDomain="JSON" schemaLocation="Log_Node.schema.json" schemaRoot=""/>
+      </nodes>
+      <nodes xmi:type="ComIbmValidate.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="290,150" domain="JSON" set="Log_Node.schema.json" checkSet="true" validateMaster="contentAndValue">
+        <translation xmi:type="utility:ConstantString" string="Validate"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLog.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="610,90" logLevel="Info" logMessage="An error occured while validating the  message in flow {{$flowDetails.flowName}}">
+        <translation xmi:type="utility:ConstantString" string="Log1"/>
+        <requestMap map="{&quot;mappings&quot;:[{&quot;customMessages&quot;:{&quot;mappings&quot;:[{&quot;ErrorMessage&quot;:{&quot;template&quot;:&quot;{{ $map($mappingInput_ExceptionList.Insert  ,function($v){$v.Text})}}&quot;}}]}}],&quot;$map&quot;:&quot;http://ibm.com/appconnect/map/v1&quot;,&quot;input&quot;:[{&quot;variable&quot;:&quot;mappingInput_InputRoot&quot;,&quot;$ref&quot;:&quot;#/mappingInputs/InputRoot&quot;},{&quot;variable&quot;:&quot;mappingInput_InputLocalEnvironment&quot;,&quot;$ref&quot;:&quot;#/mappingInputs/InputLocalEnvironment&quot;},{&quot;variable&quot;:&quot;mappingInput_ExceptionList&quot;,&quot;$ref&quot;:&quot;#/mappingInputs/ExceptionList&quot;},{&quot;variable&quot;:&quot;flowDetails&quot;,&quot;$ref&quot;:&quot;#/flowDetails&quot;}],&quot;customSchemas&quot;:{&quot;properties.`customMessages`&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;ErrorMessage&quot;:{&quot;type&quot;:&quot;string&quot;}}}}}"/>
+        <mappingInput inputName="InputRoot" inputLocation="$InputRoot" schemaLocation="" schemaRoot=""/>
+        <mappingInput inputName="InputLocalEnvironment" inputLocation="$InputLocalEnvironment" schemaLocation="" schemaRoot=""/>
+        <mappingInput inputName="ExceptionList" inputLocation="$ExceptionList" messageDomain="" schemaLocation="" schemaRoot=""/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="452,79" computeExpression="esql://routine/#MF_Log_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="466,221" computeExpression="esql://routine/#MF_Log_Compute1.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute1"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.match" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

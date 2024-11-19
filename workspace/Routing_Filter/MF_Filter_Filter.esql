@@ -1,0 +1,23 @@
+
+
+CREATE FILTER MODULE MF_Filter_Filter
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE Result REFERENCE TO Root.XMLNSC;
+		IF Result.Name='Ram' THEN
+			RETURN TRUE;
+			
+		ELSEIF Result.Name='Dipanshu'  THEN
+			RETURN FALSE;
+			
+		ELSE
+		RETURN UNKNOWN;
+		
+		
+		END IF;
+		RETURN TRUE;
+		
+		
+	END;
+	
+END MODULE;

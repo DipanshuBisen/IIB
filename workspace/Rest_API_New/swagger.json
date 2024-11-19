@@ -1,0 +1,29 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Rest_API_New",
+    "version" : "1.0.0",
+    "description" : "Rest_API_New"
+  },
+  "paths" : { },
+  "basePath" : "/rest_api_new/v1",
+  "definitions" : {
+    "StudentDetails" : {
+      "type" : "object",
+      "properties" : {
+        "Name" : {
+          "type" : "string"
+        },
+        "ID" : {
+          "type" : "string"
+        },
+        "Class" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OutputDetails" : {
+      "type" : "object"
+    }
+  }
+}

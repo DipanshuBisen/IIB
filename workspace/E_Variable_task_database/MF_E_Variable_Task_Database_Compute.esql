@@ -1,0 +1,29 @@
+
+
+CREATE COMPUTE MODULE MF_E_Variable_Task_Database_Compute
+	DECLARE EXT EXTERNAL CHARACTER;
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE var ROW;
+		SET Environment.sample.var[]=PASSTHRU('SELECT * FROM COLLEGE2' TO Database.{EXT});
+		--SET Environment.sample.var[]=PASSTHRU('SELECT * FROM EMP');
+	END;
+END MODULE;
+
+
