@@ -9,7 +9,7 @@
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="729,109">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmTCPIPClientOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="324,109" connectionDetails="2222" closeConnection="afterData">
+      <nodes xmi:type="ComIbmTCPIPClientOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="302,109" connectionDetails="2222" closeConnection="afterData">
         <translation xmi:type="utility:ConstantString" string="TCPIP Client Output"/>
       </nodes>
       <nodes xmi:type="ComIbmTCPIPClientReceive.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="516,107" connectionDetails="2222">

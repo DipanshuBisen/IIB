@@ -1,0 +1,54 @@
+
+
+CREATE COMPUTE MODULE MQInput_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE InRef REFERENCE TO InputRoot.XMLNSC.Message;
+		MOVE InRef FIRSTCHILD; -- InRef now points to CorrelationPair000000001
+		WHILE LASTMOVE(InRef) DO
+			-- Create first output message
+			SET OutputRoot.Properties = InputRoot.Properties;
+			CREATE LASTCHILD OF OutputRoot DOMAIN('MQMD');
+			SET OutputRoot.MQMD.MsgId = CAST(FIELDNAME(InRef) AS BLOB CCSID 1208);
+			SET OutputRoot.XMLNSC.Message.Field = InRef.Person[1];			
+			PROPAGATE TO TERMINAL 'out1';
+			-- Create second output message
+			SET OutputRoot.Properties = InputRoot.Properties;
+			CREATE LASTCHILD OF OutputRoot DOMAIN('MQMD');
+			SET OutputRoot.MQMD.MsgId = CAST(FIELDNAME(InRef) AS BLOB CCSID 1208);
+			SET OutputRoot.XMLNSC.Message.Field = InRef.Person[2];
+			PROPAGATE TO TERMINAL 'out2';
+			MOVE InRef NEXTSIBLING;
+		END WHILE;
+			
+			
+			RETURN TRUE; -- Out terminal is not wired, so this terminates the flow
+		
+--		DECLARE Count INTEGER 1;
+--		WHILE Count < CountFields DO
+--			SET OutputRoot.Properties = InputRoot.Properties;
+--			CREATE LASTCHILD OF OutputRoot DOMAIN('MQMD');
+--			SET OutputRoot.MQMD.GroupId = X'123456789012345678901234123456789012345678901234';
+--			SET OutputRoot.MQMD.MsgSeqNumber = Count;
+--			CREATE LASTCHILD OF OutputRoot DOMAIN('JSON');
+--			SET OutputRoot.JSON.Data.Message = InputRoot.XMLNSC.Message.Field[Count];
+--			PROPAGATE TO TERMINAL 'out1';
+--			SET Count = Count + 1;
+--		END WHILE;
+		
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

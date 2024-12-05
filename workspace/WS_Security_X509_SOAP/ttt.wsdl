@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/ttt/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ttt" targetNamespace="http://www.example.org/ttt/">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="tttSOAP" originalBindingStyle="document"/>
+        <generatedXSD location="ttt_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    
+    
+    
+  
+  
+  <wsdl:types>
+                
+          
+    
+    
+    <xsd:schema xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" targetNamespace="http://www.example.org/ttt/">
+      
+      <xsd:include schemaLocation="ttt_InlineSchema1.xsd"/>
+      
+    </xsd:schema>
+                
+  
+  
+  </wsdl:types>
+        
+  
+  
+  <wsdl:message name="NewOperationRequest">
+                
+    
+    
+    <wsdl:part element="tns:NewOperation" name="parameters"/>
+              
+  
+  
+  </wsdl:message>
+        
+  
+  
+  <wsdl:message name="NewOperationResponse">
+                
+    
+    
+    <wsdl:part element="tns:NewOperationResponse" name="parameters"/>
+              
+  
+  
+  </wsdl:message>
+        
+  
+  
+  <wsdl:portType name="ttt">
+                
+    
+    
+    <wsdl:operation name="NewOperation">
+                        
+      
+      
+      <wsdl:input message="tns:NewOperationRequest"/>
+                        
+      
+      
+      <wsdl:output message="tns:NewOperationResponse"/>
+                      
+    
+    
+    </wsdl:operation>
+              
+  
+  
+  </wsdl:portType>
+        
+  
+  
+  <wsdl:binding name="tttSOAP" type="tns:ttt">
+                
+    
+    
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+                
+    
+    
+    <wsdl:operation name="NewOperation">
+                        
+      
+      
+      <soap:operation soapAction="http://www.example.org/ttt/NewOperation"/>
+                        
+      
+      
+      <wsdl:input>
+                                
+        
+        
+        <soap:body use="literal"/>
+                              
+      
+      
+      </wsdl:input>
+                        
+      
+      
+      <wsdl:output>
+                                
+        
+        
+        <soap:body use="literal"/>
+                              
+      
+      
+      </wsdl:output>
+                      
+    
+    
+    </wsdl:operation>
+              
+  
+  
+  </wsdl:binding>
+        
+  
+  
+  <wsdl:service name="ttt">
+                
+    
+    
+    <wsdl:port binding="tns:tttSOAP" name="tttSOAP">
+                        
+      
+      
+      <soap:address location="http://localhost:7800/path"/>
+                      
+    
+    
+    </wsdl:port>
+              
+  
+  
+  </wsdl:service>
+      
+
+
+</wsdl:definitions>

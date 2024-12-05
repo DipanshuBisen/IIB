@@ -1,0 +1,51 @@
+2024-11-26 23:05:50.589080Z: [Thread 2092] (Msg 1/1) BIP1990I: Integration server 'TEST_SERVER' starting initialization; version '12.0.12.0' (64-bit) 
+2024-11-26 23:05:50.623228Z: [Thread 2092] (Msg 1/1) BIP9905I: Initializing resource managers. 
+2024-11-26 23:05:53.448688Z: [Thread 2092] (Msg 1/1) BIP10112I: The resources from 'mqsicdc.par' have not been loaded because the runtime component 'ChangeDataCapture' has not been enabled. Reason: 'Restricted by Java Runtime selected'. Further detail: 'C:\Program Files\IBM\ACE\12.0.12.0\common\jdk\jre\embedded.java.yaml'. 
+2024-11-26 23:05:54.013844Z: [Thread 2092] (Msg 1/1) BIP10112I: The resources from 'imbopentelemetry.lil' have not been loaded because the runtime component 'OpenTelemetry' has not been enabled. Reason: 'Integration Server Configuration'. Further detail: 'server.conf.yaml'. 
+2024-11-26 23:06:02.597726Z: [Thread 2092] (Msg 1/1) BIP9906I: Reading deployed resources. 
+2024-11-26 23:06:07.414170Z: [Thread 9924] (Msg 1/1) BIP2866I: IBM App Connect Enterprise administration security is inactive. 
+2024-11-26 23:06:07.435312Z: [Thread 9924] (Msg 1/1) BIP3132I: The HTTP Listener has started listening on port '7600' for 'RestAdmin http' connections. 
+2024-11-26 23:06:07.450054Z: [Thread 2092] (Msg 1/1) BIP1991I: Integration server has finished initialization. 
+2024-11-26 23:06:28.439988Z: [Thread 16104] (Msg 1/1) BIP2152I: Configuration message received. 
+2024-11-26 23:06:28.502702Z: [Thread 16104] (Msg 1/1) BIP9332I: PolicyProject 'LDAP_Project' has been created successfully. 
+2024-11-26 23:06:28.502842Z: [Thread 16104] (Msg 1/1) BIP9326I: The source 'LDAP_Projectproject.generated.bar' has been successfully deployed. 
+2024-11-26 23:06:28.503144Z: [Thread 16104] (Msg 1/1) BIP2154I: Integration server finished with Configuration message. 
+2024-11-26 23:06:36.474624Z: [Thread 21400] (Msg 1/1) BIP2152I: Configuration message received. 
+2024-11-26 23:06:36.532204Z: [Thread 21400] (Msg 1/1) BIP2155I: About to 'Initialize' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-26 23:06:36.824768Z: [Thread 21400] (Msg 1/1) BIP2155I: About to 'Start' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-26 23:06:36.882884Z: [Thread 21400] (Msg 1/1) BIP3132I: The HTTP Listener has started listening on port '7800' for 'http' connections. 
+2024-11-26 23:06:36.883000Z: [Thread 21400] (Msg 1/1) BIP1996I: Listening on HTTP URL '/path'. 
+2024-11-26 23:06:36.883296Z: [Thread 21400] (Msg 1/1) BIP2269I: Deployed resource 'MF_LDAP_Authentication' (uuid='MF_LDAP_Authentication',type='MessageFlow') started successfully. 
+2024-11-26 23:06:36.883384Z: [Thread 21400] (Msg 1/1) BIP9332I: Application 'LDAP_Authentication' has been created successfully. 
+2024-11-26 23:06:36.883492Z: [Thread 21400] (Msg 1/1) BIP9326I: The source 'LDAP_Authenticationproject.generated.bar' has been successfully deployed. 
+2024-11-26 23:06:36.883888Z: [Thread 21400] (Msg 1/1) BIP2154I: Integration server finished with Configuration message. 
+2024-11-26 23:07:59.886232Z: [Thread 9036] (Msg 1/2) BIP2724W: A configuration exception was caught during security processing of flow 'MF_LDAP_Authentication' using security profile '{LDAP_Project}:LDAP_Policy'. 
+2024-11-26 23:07:59.886340Z: [Thread 9036] (Msg 2/2) BIP2721E: Failed to bind to the LDAP server(s) '[ldap://192.168.2.21:389]' with user name 'bob'. Possible explanation: javax.naming.InvalidNameException: [LDAP: error code 34 - invalid DN] 
+2024-11-26 23:14:19.700344Z: [Thread 8624] (Msg 1/1) BIP2152I: Configuration message received. 
+2024-11-26 23:14:19.700434Z: [Thread 8624] (Msg 1/1) BIP2153I: About to 'deleteAll' an integration server. 
+2024-11-26 23:14:19.701552Z: [Thread 8624] (Msg 1/1) BIP2155I: About to 'Stop' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-26 23:14:19.842806Z: [Thread 8624] (Msg 1/1) BIP2271I: Deployed resource 'MF_LDAP_Authentication' (uuid='MF_LDAP_Authentication',type='MessageFlow') successfully stopped. 
+2024-11-26 23:14:19.843010Z: [Thread 8624] (Msg 1/1) BIP2155I: About to 'TearDown' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-26 23:14:19.857714Z: [Thread 8624] (Msg 1/1) BIP3133I: The HTTP Listener has stopped listening on port '7800' for 'http' connections. 
+2024-11-26 23:14:19.897860Z: [Thread 8624] (Msg 1/1) BIP9521I: Application 'LDAP_Authentication' has been deleted. 
+2024-11-26 23:14:19.899392Z: [Thread 8624] (Msg 1/1) BIP9521I: PolicyProject 'LDAP_Project' has been deleted. 
+2024-11-26 23:14:19.904094Z: [Thread 8624] (Msg 1/1) BIP2154I: Integration server finished with Configuration message. 
+2024-11-27 15:44:24.465804Z: [Thread 23368] (Msg 1/1) BIP2152I: Configuration message received. 
+2024-11-27 15:44:25.150092Z: [Thread 23368] (Msg 1/1) BIP9332I: PolicyProject 'LDAP_Project' has been created successfully. 
+2024-11-27 15:44:25.150858Z: [Thread 23368] (Msg 1/1) BIP9326I: The source 'LDAP_Projectproject.generated.bar' has been successfully deployed. 
+2024-11-27 15:44:25.151334Z: [Thread 23368] (Msg 1/1) BIP2154I: Integration server finished with Configuration message. 
+2024-11-27 15:44:44.649320Z: [Thread 19760] (Msg 1/1) BIP2152I: Configuration message received. 
+2024-11-27 15:44:45.894460Z: [Thread 19760] (Msg 1/1) BIP2155I: About to 'Initialize' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:44:47.314636Z: [Thread 19760] (Msg 1/1) BIP2155I: About to 'Start' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:44:47.369800Z: [Thread 19760] (Msg 1/1) BIP3132I: The HTTP Listener has started listening on port '7800' for 'http' connections. 
+2024-11-27 15:44:47.369916Z: [Thread 19760] (Msg 1/1) BIP1996I: Listening on HTTP URL '/path'. 
+2024-11-27 15:44:47.370264Z: [Thread 19760] (Msg 1/1) BIP2269I: Deployed resource 'MF_LDAP_Authentication' (uuid='MF_LDAP_Authentication',type='MessageFlow') started successfully. 
+2024-11-27 15:44:47.370368Z: [Thread 19760] (Msg 1/1) BIP9332I: Application 'LDAP_Authentication' has been created successfully. 
+2024-11-27 15:44:47.370532Z: [Thread 19760] (Msg 1/1) BIP9326I: The source 'LDAP_Authenticationproject.generated.bar' has been successfully deployed. 
+2024-11-27 15:44:47.370948Z: [Thread 19760] (Msg 1/1) BIP2154I: Integration server finished with Configuration message. 
+2024-11-27 15:49:13.991921Z: [Thread 2092] (Msg 1/1) BIP1989I: Integration server is terminating due to a shutdown event. 
+2024-11-27 15:49:14.496546Z: [Thread 2092] (Msg 1/1) BIP2155I: About to 'Stop' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:49:17.517594Z: [Thread 2092] (Msg 1/1) BIP2271I: Deployed resource 'MF_LDAP_Authentication' (uuid='MF_LDAP_Authentication',type='MessageFlow') successfully stopped. 
+2024-11-27 15:49:18.865778Z: [Thread 2092] (Msg 1/1) BIP2155I: About to 'TearDown' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:49:18.981584Z: [Thread 2092] (Msg 1/1) BIP3133I: The HTTP Listener has stopped listening on port '7800' for 'http' connections. 
+2024-11-27 15:49:30.875544Z: [Thread 2092] (Msg 1/1) BIP1992I: Integration server 'TEST_SERVER' stopped. 

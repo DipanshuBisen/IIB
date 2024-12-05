@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><?ibm-bip policySet="WS_Set"?>
+<securitybinding:securityBindings xmlns:securitybinding="http://www.ibm.com/xmlns/prod/websphere/200710/ws-securitybinding">
+  <securitybinding:securityBinding name="application">
+    <securitybinding:securityOutboundBindingConfig>
+      <securitybinding:signingInfo name="gen_tname" order="1">
+        <securitybinding:signingKeyInfo reference="gen_setname_signtname_keyinfo"/>
+        <securitybinding:signingPartReference reference="request:tname">
+          <securitybinding:transform algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+        </securitybinding:signingPartReference>
+      </securitybinding:signingInfo>
+      <securitybinding:keyInfo classname="com.ibm.ws.wssecurity.wssapi.CommonContentGenerator" name="gen_auth_keyinfo" type="STRREF">
+        <securitybinding:tokenReference reference="gen_auth"/>
+      </securitybinding:keyInfo>
+      <securitybinding:keyInfo classname="com.ibm.ws.wssecurity.wssapi.CommonContentGenerator" name="gen_setname_signtname_keyinfo" type="STRREF">
+        <securitybinding:tokenReference reference="gen_requesttname"/>
+      </securitybinding:keyInfo>
+      <securitybinding:tokenGenerator classname="com.ibm.ws.wssecurity.wssapi.token.impl.CommonTokenGenerator" name="gen_auth">
+        <securitybinding:valueType localName="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/>
+        <securitybinding:securityTokenReference reference="request:con"/>
+        <securitybinding:jAASConfig configName="system.wss.generate.x509"/>
+        <securitybinding:callbackHandler classname="com.ibm.websphere.wssecurity.callbackhandler.X509GenerateCallbackHandler">
+          <securitybinding:keyStore path="*MQSIBROKERSTOREPATHMQSI*" storepass="*MQSIBROKERSTOREPWDMQSI*" type="JKS"/>
+          <securitybinding:key alias="ram" keypass="*MQSIBROKERSTOREKEYPASSramMQSI*" name="CN=192.168.2.66, C=US"/>
+        </securitybinding:callbackHandler>
+      </securitybinding:tokenGenerator>
+      <securitybinding:tokenGenerator classname="com.ibm.ws.wssecurity.wssapi.token.impl.CommonTokenGenerator" name="gen_requesttname">
+        <securitybinding:valueType localName="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/>
+        <securitybinding:jAASConfig configName="system.wss.generate.x509"/>
+        <securitybinding:callbackHandler classname="com.ibm.websphere.wssecurity.callbackhandler.X509GenerateCallbackHandler">
+          <securitybinding:keyStore path="*MQSIBROKERSTOREPATHMQSI*" storepass="*MQSIBROKERSTOREPWDMQSI*" type="JKS"/>
+          <securitybinding:key alias="ram" keypass="*MQSIBROKERSTOREKEYPASSramMQSI*" name="CN=192.168.2.66, C=US"/>
+        </securitybinding:callbackHandler>
+      </securitybinding:tokenGenerator>
+    </securitybinding:securityOutboundBindingConfig>
+    <securitybinding:securityInboundBindingConfig/>
+  </securitybinding:securityBinding>
+</securitybinding:securityBindings>

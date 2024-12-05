@@ -1,0 +1,81 @@
+
+
+CREATE COMPUTE MODULE MF_TASK_Two_BackEnds_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 DECLARE ch_ID REFERENCE TO InputRoot.XMLNSC.Root.Header.channelId;
+		IF ch_ID='TPH' THEN
+			CALL CopyEntireMessage1();
+			PROPAGATE TO TERMINAL 'out';
+		ELSEIF ch_ID='FCS'  THEN
+			CALL CopyEntireMessage2();
+			PROPAGATE TO TERMINAL 'out1';
+		ELSE
+			CALL CopyEntireMessage();
+			PROPAGATE TO TERMINAL 'out2';
+		END IF;
+		 
+		RETURN FALSE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+	
+	-- TPH back end
+
+	CREATE PROCEDURE CopyEntireMessage1() BEGIN
+		DECLARE author_name REFERENCE TO InputRoot.XMLNSC.Root.Body.Data.catalog.book[1];
+		CREATE LASTCHILD OF OutputRoot DOMAIN('XMLNSC');
+		CREATE LASTCHILD OF OutputRoot.XMLNSC.Root.Body.Data NAME 'catalog';
+	WHILE LASTMOVE(author_name)  DO
+		DECLARE book ROW;
+		IF  author_name.author='Gambardella Matthew' THEN
+			CREATE LASTCHILD OF  OutputRoot.XMLNSC.Root.Body.Data.catalog NAME book VALUE author_name;
+		ELSEIF author_name.author='Ralls Kim' THEN 
+			CREATE LASTCHILD OF  OutputRoot.XMLNSC.Root.Body.Data.catalog NAME book VALUE author_name;
+		ELSEIF author_name.author='Randall Cynthia' THEN
+			CREATE LASTCHILD OF  OutputRoot.XMLNSC.Root.Body.Data.catalog NAME book VALUE author_name;
+		ELSEIF author_name.author='Thurman Paula' THEN
+			CREATE LASTCHILD OF  OutputRoot.XMLNSC.Root.Body.Data.catalog NAME book VALUE author_name;
+		ELSEIF author_name.author='Knorr Stefan' THEN
+			CREATE LASTCHILD OF  OutputRoot.XMLNSC.Root.Body.Data.catalog NAME book VALUE author_name;
+		ELSEIF author_name.author='Brien Tim' THEN
+			CREATE LASTCHILD OF  OutputRoot.XMLNSC.Root.Body.Data.catalog NAME book VALUE author_name;
+		ELSEIF author_name.author='Galos Mike' THEN
+			CREATE LASTCHILD OF  OutputRoot.XMLNSC.Root.Body.Data.catalog NAME book VALUE author_name;		
+		END IF;
+		MOVE author_name NEXTSIBLING;
+	END WHILE;
+	 
+	  
+	END;
+	
+	-- FCH back end 
+	
+	CREATE PROCEDURE CopyEntireMessage2() BEGIN
+		
+	  DECLARE author_name1 REFERENCE TO InputRoot.XMLNSC.Root.Body.Data.catalog.book[1];
+	  DECLARE author_name2 REFERENCE TO InputRoot.XMLNSC.Root.Body.Data.catalogs.book[1];
+	WHILE LASTMOVE(author_name1)  DO
+		IF  author_name1.author='Corets Eva' THEN
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.Root.Body.catalog NAME 'book' VALUE 'InputRoot.XMLNSC.Root.Body.Data.catalog.book';
+			
+		END IF;
+		MOVE author_name1 NEXTSIBLING;
+	END WHILE;
+	END;
+	
+	-- Other one 
+	
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+	  SET OutputRoot.XMLNSC.Result='This BackEnd is not Present!';
+	END;
+END MODULE;

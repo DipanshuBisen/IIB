@@ -19,6 +19,9 @@ CREATE COMPUTE MODULE MF_MQ_Publication_Compute
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		SET OutputRoot = InputRoot;
+		SET OutputRoot.MQMD.Format = 'MQFMT_RF_HEADER_2';
+
+		SET OutputRoot.MQRFH2.psc.Topic = 'topic2';		
+		SET OutputRoot.XMLNSC.data = InputRoot.XMLNSC.hi;
 	END;
 END MODULE;

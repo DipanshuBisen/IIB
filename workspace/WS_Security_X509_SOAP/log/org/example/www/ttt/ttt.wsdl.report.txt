@@ -1,0 +1,21 @@
+
+
+Importing file: C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\WS_Security_X509_SOAP\ttt.wsdl
+
+The WSDL import will proceed with bindings tttSOAP.
+Creating wsdl schema document for file:///C:/Users/Sreenivas Bandaru/IBM/ACET12/workspace/WS_Security_X509_SOAP/ttt.wsdl.
+Parsing wsdl binding {http://www.example.org/ttt/}tttSOAP.
+Parsing wsdl binding input NewOperation.
+Parsing wsdl binding output NewOperation.
+Processing doc style for operation NewOperation.
+Populating WSDL schema ttt.xsd.
+Creating file ttt.xsd in the workspace.
+Copying source WSDL ttt.wsdl to ttt.wsdl.
+
+Elapsed time processing this message definition file: 1.851 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

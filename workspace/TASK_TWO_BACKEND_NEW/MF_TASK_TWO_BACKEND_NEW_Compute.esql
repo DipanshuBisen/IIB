@@ -1,0 +1,61 @@
+
+
+CREATE COMPUTE MODULE MF_TASK_TWO_BACKEND_NEW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE channelId REFERENCE TO InputRoot.XMLNSC.Root.Header.channelId;
+		DECLARE data CHARACTER FIELDNAME(InputRoot.XMLNSC.Root.Body.[1]);
+		DECLARE data1 CHARACTER FIELDNAME(InputRoot.XMLNSC.Root.Body.Data.[1]);
+		
+		DECLARE inref REFERENCE TO InputRoot.XMLNSC.Root.Body.{data}.book[1];
+		DECLARE inref1 REFERENCE TO InputRoot.XMLNSC.Root.Body.Data.{data1}.book[1];
+		
+		IF channelId = 'FCS' OR channelId = 'TPH' THEN
+			
+			DECLARE i INTEGER 1;
+			WHILE LASTMOVE(inref)  DO
+				DECLARE author REFERENCE TO InputRoot.XMLNSC.Root.Body.{data}.book[1].author;
+			IF author='Corets Eva' THEN
+				set OutputRoot.XMLNSC.Root.Body.{data}.book[i]=InputRoot.XMLNSC.Root.Body.{data}.book[i];
+				move inref NEXTSIBLING;
+				set i=i+1;
+			ELSE
+				move inref NEXTSIBLING;
+			END IF;
+		END WHILE;
+			
+		ELSE
+			
+			DECLARE j INTEGER 1;
+			WHILE LASTMOVE(inref1)  DO
+				DECLARE author REFERENCE TO InputRoot.XMLNSC.Root.Body.{data}.book.author;
+			IF author='Corets Eva' THEN
+				
+					
+				
+				set OutputRoot.XMLNSC.Root.Body.Data.{data1}.book[j]=InputRoot.XMLNSC.Root.Body.Data.{data1}.book[j];
+				move inref1 NEXTSIBLING;
+				set j=j+1;
+			ELSE
+				move inref1 NEXTSIBLING;
+			END IF;
+			END WHILE;
+		END IF;
+	END;
+END MODULE;

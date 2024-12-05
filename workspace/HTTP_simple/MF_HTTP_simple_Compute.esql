@@ -19,6 +19,8 @@ CREATE COMPUTE MODULE MF_HTTP_simple_Compute
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		SET OutputRoot = InputRoot;
+	DECLARE i INTEGER;
+	SET i= CAST(InputRoot.XMLNSC.id AS INTEGER CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding);
+	SET OutputRoot.XMLNSC.data= i+ 1;
 	END;
 END MODULE;

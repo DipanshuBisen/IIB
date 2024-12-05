@@ -1,0 +1,30 @@
+2024-09-04 23:59:44.102320Z: [Thread 10756] (Msg 1/1) BIP1990I: Integration server 'TEST_SERVER' starting initialization; version '12.0.12.0' (64-bit) 
+2024-09-04 23:59:44.347672Z: [Thread 10756] (Msg 1/1) BIP9905I: Initializing resource managers. 
+2024-09-04 23:59:50.468476Z: [Thread 10756] (Msg 1/1) BIP10112I: The resources from 'mqsicdc.par' have not been loaded because the runtime component 'ChangeDataCapture' has not been enabled. Reason: 'Restricted by Java Runtime selected'. Further detail: 'C:\Program Files\IBM\ACE\12.0.12.0\common\jdk\jre\embedded.java.yaml'. 
+2024-09-04 23:59:51.211264Z: [Thread 10756] (Msg 1/1) BIP10112I: The resources from 'imbopentelemetry.lil' have not been loaded because the runtime component 'OpenTelemetry' has not been enabled. Reason: 'Integration Server Configuration'. Further detail: 'server.conf.yaml'. 
+2024-09-04 23:59:59.562980Z: [Thread 10756] (Msg 1/1) BIP9906I: Reading deployed resources. 
+2024-09-04 23:59:59.725820Z: [Thread 10756] (Msg 1/1) BIP9907I: Initializing deployed resources. 
+2024-09-04 23:59:59.727896Z: [Thread 10756] (Msg 1/1) BIP2155I: About to 'Initialize' the deployed resource 'Log_Console_Logging' of type 'Application'. 
+2024-09-05 00:00:00.645238Z: [Thread 10756] (Msg 1/1) BIP2155I: About to 'Start' the deployed resource 'Log_Console_Logging' of type 'Application'. 
+2024-09-05 00:00:00.727088Z: [Thread 10756] (Msg 1/1) BIP3132I: The HTTP Listener has started listening on port '7800' for 'http' connections. 
+2024-09-05 00:00:00.727166Z: [Thread 10756] (Msg 1/1) BIP1996I: Listening on HTTP URL '/path'. 
+2024-09-05 00:00:00.727372Z: [Thread 10756] (Msg 1/1) BIP2269I: Deployed resource 'MF_Console_Logging' (uuid='MF_Console_Logging',type='MessageFlow') started successfully. 
+2024-09-05 00:00:00.727462Z: [Thread 10756] (Msg 1/1) BIP9332I: Application 'Log_Console_Logging' has been reloaded successfully. 
+2024-09-05 00:00:02.857714Z: [Thread 4540] (Msg 1/1) BIP2866I: IBM App Connect Enterprise administration security is inactive. 
+2024-09-05 00:00:02.880457Z: [Thread 4540] (Msg 1/1) BIP3144S: An error has occurred during HTTP listener startup: the specified TCPIP port (7600) is already in use. 
+2024-09-05 00:00:02.894329Z: [Thread 10756] (Msg 1/1) BIP1991I: Integration server has finished initialization. 
+2024-09-05 00:00:25.377330Z: [Thread 13180] (Msg 1/1) BIP2152I: Configuration message received. 
+2024-09-05 00:00:25.377420Z: [Thread 13180] (Msg 1/1) BIP2153I: About to 'deleteAll' an integration server. 
+2024-09-05 00:00:25.378126Z: [Thread 13180] (Msg 1/1) BIP2155I: About to 'Stop' the deployed resource 'Log_Console_Logging' of type 'Application'. 
+2024-09-05 00:00:26.678742Z: [Thread 13180] (Msg 1/1) BIP2271I: Deployed resource 'MF_Console_Logging' (uuid='MF_Console_Logging',type='MessageFlow') successfully stopped. 
+2024-09-05 00:00:26.678892Z: [Thread 13180] (Msg 1/1) BIP2155I: About to 'TearDown' the deployed resource 'Log_Console_Logging' of type 'Application'. 
+2024-09-05 00:00:26.693792Z: [Thread 13180] (Msg 1/1) BIP3133I: The HTTP Listener has stopped listening on port '7800' for 'http' connections. 
+2024-09-05 00:00:26.741536Z: [Thread 13180] (Msg 1/1) BIP9521I: Application 'Log_Console_Logging' has been deleted. 
+2024-09-05 00:00:26.765934Z: [Thread 13180] (Msg 1/1) BIP2154I: Integration server finished with Configuration message. 
+2024-09-05 00:00:32.753364Z: [Thread 13180] (Msg 1/1) BIP2152I: Configuration message received. 
+2024-09-05 00:00:32.788566Z: [Thread 13180] (Msg 1/1) BIP2155I: About to 'Initialize' the deployed resource 'Log_DB_Logging_Consumer' of type 'Application'. 
+2024-09-05 00:00:32.833320Z: [Thread 13180] (Msg 1/2) BIP9318E: Request to 'PreSetupValidate' resource 'Log_DB_Logging_Consumer', 'Log_DB_Logging_Consumer' of type 'Application' failed. 
+2024-09-05 00:00:32.833394Z: [Thread 13180] (Msg 2/2) BIP2432E: (.MF_DB_Logging_Consumer_Compute1.CopyEntireMessage, 17.63) : The correlation name 'InputDataChar' is not valid. Those in scope are: Environment, InputLocalEnvironment, OutputLocalEnvironment, InputRoot, InputBody, InputProperties, OutputRoot, InputExceptionList, OutputExceptionList, InputDestinationList, OutputDestinationList, Inref, ResponseBlob, ResponseChar, AppName, MsgFlowName, LogType. 
+2024-09-05 00:00:32.833492Z: [Thread 13180] (Msg 1/1) BIP9333W: Application 'Log_DB_Logging_Consumer' has been created but contains errors which has prevented some resources from starting. 
+2024-09-05 00:00:32.833606Z: [Thread 13180] (Msg 1/1) BIP1096E: The source 'Log_DB_Logging_Consumerproject.generated.bar' has been deployed but there were one or more failures which may mean the deployed resources will be unable to execute. 
+2024-09-05 00:00:32.833992Z: [Thread 13180] (Msg 1/1) BIP2154I: Integration server finished with Configuration message. 

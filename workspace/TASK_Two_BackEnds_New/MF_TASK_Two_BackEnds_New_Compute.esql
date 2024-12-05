@@ -1,0 +1,77 @@
+CREATE COMPUTE MODULE MF_TASK_Two_BackEnds_New_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;	
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE i INTEGER 1;
+		DECLARE j INTEGER 1;
+		DECLARE Ch_ID REFERENCE TO InputRoot.XMLNSC.Root.Header.channelId;
+
+
+		DECLARE catalogRef REFERENCE TO InputRoot.XMLNSC.Root.Body.Data;
+		-- CREATE LASTCHILD OF OutputRoot DOMAIN ('XMLNSC');		
+		
+		-- -- Check if <Data> exists, and adjust the reference accordingly
+		-- IF FIELDNAME(InputRoot.XMLNSC.Root.Body.Data) IS NULL THEN
+		-- SET catalogRef = InputRoot.XMLNSC.Root.Body;
+		--
+		-- SET outref = OutputRoot.XMLNSC.Root.Body;
+		-- END IF;					
+		-- For TPH
+		IF Ch_ID='TPH' THEN
+			SET OutputRoot.XMLNSC.Root.Header=InputRoot.XMLNSC.Root.Header;
+			DECLARE author_name1 REFERENCE TO catalogRef.*.book[1];
+
+			DECLARE tag CHARACTER FIELDNAME(catalogRef.*[>]);
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.Root.Body.Data NAME tag;					
+
+
+			WHILE LASTMOVE(author_name1) DO
+				IF author_name1.author='Corets Eva' THEN
+					--set Environment.extradata[]=author_name1;
+				ELSE
+
+					CREATE LASTCHILD OF OutputRoot.XMLNSC.Root.Body.Data.{tag} NAME 'book';
+					SET OutputRoot.XMLNSC.Root.Body.Data.{tag}.book[j]=author_name1;
+					SET j=j+1;
+				END IF;
+				MOVE author_name1 NEXTSIBLING;
+			END WHILE;
+
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData.queueName='OUT1';			
+			
+			-- For FCH
+		ELSEIF Ch_ID='FCS' THEN
+			SET OutputRoot.XMLNSC.Root.Header=InputRoot.XMLNSC.Root.Header;
+			DECLARE author_name REFERENCE TO catalogRef.*.book[1];			
+
+
+			DECLARE tag CHARACTER FIELDNAME(catalogRef.*[>]);
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.Root.Body.Data NAME tag;			
+
+
+			WHILE LASTMOVE(author_name) DO
+				IF author_name.author='Corets Eva' THEN
+
+					CREATE LASTCHILD OF OutputRoot.XMLNSC.Root.Body.Data.{tag} NAME 'book';
+					SET OutputRoot.XMLNSC.Root.Body.Data.{tag}.book[i]=author_name;
+					SET i=i+1;
+				END IF;
+				MOVE author_name NEXTSIBLING;
+			END WHILE;
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName='OUT2';			
+			
+			
+			-- For Other
+		ELSE
+			SET OutputRoot.XMLNSC.Root.Header=InputRoot.XMLNSC.Root.Header;
+			SET OutputRoot.XMLNSC.Root.Result='Unknown BackEnd Name Is Specifeid';
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData.queueName='OUT3';
+		END IF;
+	END;
+END MODULE;

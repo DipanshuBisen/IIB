@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="FtpServer" policyName="FTP_Server_Policy" policyTemplate="FtpServer">
+    <fileFtpServer>192.168.3.44</fileFtpServer>
+    <fileFtpAccountInfo></fileFtpAccountInfo>
+    <fileFtpDirectory>/ram.txt</fileFtpDirectory>
+    <fileFtpUser>ram</fileFtpUser>
+    <fileFtpTransferMode>BINARY</fileFtpTransferMode>
+    <fileFtpScanDelay></fileFtpScanDelay>
+    <fileFtpConnectionType>PASSIVE</fileFtpConnectionType>
+    <strictHostKeyChecking>false</strictHostKeyChecking>
+    <allowedCiphers></allowedCiphers>
+    <fileFtpCompression>0</fileFtpCompression>
+    <remoteTransferType>FTP</remoteTransferType>
+    <knownHostsFile></knownHostsFile>
+    <sslProtocol>TLSv1.2</sslProtocol>
+    <mac></mac>
+    <preserveRemoteFileDate>false</preserveRemoteFileDate>
+    <timeoutInterval>0</timeoutInterval>
+  </policy>
+</policies>

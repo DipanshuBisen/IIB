@@ -1,0 +1,11 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Info">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:integer" name="REQUEST_ID"/>
+                <xs:element type="xs:string" name="NAME"/>
+                <xs:element type="xs:string" name="CITY"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

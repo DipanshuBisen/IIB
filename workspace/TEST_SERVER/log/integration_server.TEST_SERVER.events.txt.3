@@ -1,0 +1,24 @@
+2024-11-27 15:50:54.219864Z: [Thread 26576] (Msg 1/1) BIP1990I: Integration server 'TEST_SERVER' starting initialization; version '12.0.12.0' (64-bit) 
+2024-11-27 15:50:54.469044Z: [Thread 26576] (Msg 1/1) BIP9905I: Initializing resource managers. 
+2024-11-27 15:51:39.208740Z: [Thread 26576] (Msg 1/1) BIP10112I: The resources from 'mqsicdc.par' have not been loaded because the runtime component 'ChangeDataCapture' has not been enabled. Reason: 'Restricted by Java Runtime selected'. Further detail: 'C:\Program Files\IBM\ACE\12.0.12.0\common\jdk\jre\embedded.java.yaml'. 
+2024-11-27 15:51:45.623784Z: [Thread 26576] (Msg 1/1) BIP10112I: The resources from 'imbopentelemetry.lil' have not been loaded because the runtime component 'OpenTelemetry' has not been enabled. Reason: 'Integration Server Configuration'. Further detail: 'server.conf.yaml'. 
+2024-11-27 15:52:32.676964Z: [Thread 26576] (Msg 1/1) BIP9906I: Reading deployed resources. 
+2024-11-27 15:52:33.366578Z: [Thread 26576] (Msg 1/1) BIP9907I: Initializing deployed resources. 
+2024-11-27 15:52:33.409382Z: [Thread 26576] (Msg 1/1) BIP2155I: About to 'Initialize' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:52:39.661560Z: [Thread 26576] (Msg 1/1) BIP9332I: PolicyProject 'LDAP_Project' has been reloaded successfully. 
+2024-11-27 15:52:39.661736Z: [Thread 26576] (Msg 1/1) BIP2155I: About to 'Start' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:52:39.827252Z: [Thread 26576] (Msg 1/1) BIP3132I: The HTTP Listener has started listening on port '7800' for 'http' connections. 
+2024-11-27 15:52:39.827332Z: [Thread 26576] (Msg 1/1) BIP1996I: Listening on HTTP URL '/path'. 
+2024-11-27 15:52:39.827556Z: [Thread 26576] (Msg 1/1) BIP2269I: Deployed resource 'MF_LDAP_Authentication' (uuid='MF_LDAP_Authentication',type='MessageFlow') started successfully. 
+2024-11-27 15:52:39.827648Z: [Thread 26576] (Msg 1/1) BIP9332I: Application 'LDAP_Authentication' has been reloaded successfully. 
+2024-11-27 15:52:55.839744Z: [Thread 15016] (Msg 1/1) BIP2866I: IBM App Connect Enterprise administration security is inactive. 
+2024-11-27 15:52:55.863856Z: [Thread 15016] (Msg 1/1) BIP3132I: The HTTP Listener has started listening on port '7600' for 'RestAdmin http' connections. 
+2024-11-27 15:52:55.865444Z: [Thread 26576] (Msg 1/1) BIP1991I: Integration server has finished initialization. 
+2024-11-27 15:53:51.373672Z: [Thread 15248] (Msg 1/2) BIP2724W: A configuration exception was caught during security processing of flow 'MF_LDAP_Authentication' using security profile '{LDAP_Project}:LDAP_Policy'. 
+2024-11-27 15:53:51.373748Z: [Thread 15248] (Msg 2/2) BIP2721E: Failed to bind to the LDAP server(s) '[ldap://192.168.2.21:389]' with user name 'cn=admin,dc=example,dc=com'. Possible explanation: javax.naming.AuthenticationException: [LDAP: error code 49 - Invalid Credentials] 
+2024-11-27 15:57:59.769984Z: [Thread 26576] (Msg 1/1) BIP1989I: Integration server is terminating due to a shutdown event. 
+2024-11-27 15:57:59.771628Z: [Thread 26576] (Msg 1/1) BIP2155I: About to 'Stop' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:58:00.787614Z: [Thread 26576] (Msg 1/1) BIP2271I: Deployed resource 'MF_LDAP_Authentication' (uuid='MF_LDAP_Authentication',type='MessageFlow') successfully stopped. 
+2024-11-27 15:58:01.422131Z: [Thread 26576] (Msg 1/1) BIP2155I: About to 'TearDown' the deployed resource 'LDAP_Authentication' of type 'Application'. 
+2024-11-27 15:58:01.452208Z: [Thread 26576] (Msg 1/1) BIP3133I: The HTTP Listener has stopped listening on port '7800' for 'http' connections. 
+2024-11-27 15:58:04.824890Z: [Thread 26576] (Msg 1/1) BIP1992I: Integration server 'TEST_SERVER' stopped. 

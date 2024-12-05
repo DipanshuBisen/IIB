@@ -6,11 +6,13 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Database_DatabaseRetrive/icons/full/obj16/MF_database_Retrive.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Database_DatabaseRetrive/icons/full/obj30/MF_database_Retrive.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="321,141" dataSourceName="{DATBASE_R}:Database_Database_retrive" sqlQuery="SELECT EMPLOYEES12.EMPNAME&#xA;FROM EMPLOYEES12&#xA;WHERE EMPLOYEES12.EID = ?&#xA;ORDER BY EMPLOYEES12.EMPNAME ASC" tableNameComboValues="0,0~EMPLOYEES12" columnNameComboValues="1,0~EID,EMPNAME" operatorComboValues="0,2~=" valueTypeComboValues="0,2~Element" columnValueComboValues="0~EMPLOYEES12.EMPNAME">
+      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="321,141" dataSourceName="JDBC_policy" sqlQuery="SELECT COLLEGE.NAME, COLLEGE.AGE&#xA;FROM COLLEGE&#xA;WHERE COLLEGE.ID = 1&#xA;ORDER BY COLLEGE.NAME ASC, COLLEGE.AGE ASC" tableNameComboValues="0,0,0~COLLEGE" columnNameComboValues="1,2,0~AGE,ID,NAME" operatorComboValues="2,0,0~ASC" valueTypeComboValues="4,0,0,0~None" columnValueComboValues="1,0,0~COLLEGE.AGE">
         <translation xmi:type="utility:ConstantString" string="Database Retrieve"/>
-        <queryElements tableName="EMPLOYEES12" columnName="EMPNAME" operator="ASC" valueType="None" value="None"/>
-        <queryElements tableName="EMPLOYEES12" columnName="EID" operator="=" valueType="Element" value="$InputRoot/XMLNSC/EMPLOYEES12/EID=?"/>
-        <dataElements columnName="EMPLOYEES12.EMPNAME" messageElement="$OutputRoot/XMLNSC/EMPLOYEES12/EID"/>
+        <queryElements tableName="COLLEGE" columnName="ID" operator="=" valueType="Integer" value="1"/>
+        <queryElements tableName="COLLEGE" columnName="NAME" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="COLLEGE" columnName="AGE" operator="ASC" valueType="None" value="None"/>
+        <dataElements columnName="COLLEGE.NAME" messageElement="$OutputRoot/XMLNSC/COLLEGE/NAME"/>
+        <dataElements columnName="COLLEGE.AGE" messageElement="$OutputRoot/XMLNSC/COLLEGE/AGE"/>
       </nodes>
       <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="78,154" URLSpecifier="/path" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="HTTP Input"/>

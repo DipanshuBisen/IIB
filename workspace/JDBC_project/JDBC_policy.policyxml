@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="JDBCProviders" policyName="JDBC_policy" policyTemplate="Oracle">
+    <databaseName>system</databaseName>
+    <databaseType>Oracle</databaseType>
+    <databaseVersion>11</databaseVersion>
+    <type4DriverClassName>oracle.jdbc.OracleDriver</type4DriverClassName>
+    <type4DatasourceClassName>oracle.jdbc.xa.client.OracleXADataSource</type4DatasourceClassName>
+    <connectionUrlFormat>jdbc:oracle:thin:system/sarasu10@localhost:1522:xe</connectionUrlFormat>
+    <connectionUrlFormatAttr1>XE</connectionUrlFormatAttr1>
+    <connectionUrlFormatAttr2></connectionUrlFormatAttr2>
+    <connectionUrlFormatAttr3></connectionUrlFormatAttr3>
+    <connectionUrlFormatAttr4></connectionUrlFormatAttr4>
+    <connectionUrlFormatAttr5></connectionUrlFormatAttr5>
+    <serverName>localhost</serverName>
+    <portNumber>1522</portNumber>
+    <jarsURL>C:\Oracle1\dbhomeXE\jdbc\lib</jarsURL>
+    <databaseSchemaNames>system</databaseSchemaNames>
+    <description></description>
+    <maxConnectionPoolSize>0</maxConnectionPoolSize>
+    <securityIdentity>JDBC_policy</securityIdentity>
+    <environmentParms></environmentParms>
+    <jdbcProviderXASupport>true</jdbcProviderXASupport>
+    <useDeployedJars>false</useDeployedJars>
+  </policy>
+</policies>

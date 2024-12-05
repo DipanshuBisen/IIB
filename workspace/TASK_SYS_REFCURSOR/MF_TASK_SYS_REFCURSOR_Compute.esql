@@ -22,9 +22,12 @@ CREATE COMPUTE MODULE MF_TASK_SYS_REFCURSOR_Compute
 		CALL SYS_CUR(Environment.Variable1[],Environment.Variable2[]);
 		SET OutputRoot.XMLNSC.data.out1[]=Environment.Variable1[];
 		SET OutputRoot.XMLNSC.data.out2[]=Environment.Variable2[];
+		 
 		
 	END;
 END MODULE;
+
+
 CREATE PROCEDURE  SYS_CUR()
 LANGUAGE DATABASE
 DYNAMIC RESULT SETS 2

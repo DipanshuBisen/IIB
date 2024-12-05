@@ -1,0 +1,30 @@
+
+
+CREATE COMPUTE MODULE MF_Work_Load_Management_Policy_Start_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE Counter INTEGER 1;
+        WHILE Counter < 100 DO
+            SET OutputRoot.XMLNSC.Response.Message = 'hello';
+            SET Counter = Counter + 1;
+            PROPAGATE; 
+        END WHILE;
+        	
+	END;
+END MODULE;

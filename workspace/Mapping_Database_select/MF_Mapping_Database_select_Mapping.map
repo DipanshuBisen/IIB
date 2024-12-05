@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="default" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0">
+    <input path="db:database(/xe.dbm,xe,db:schema-tables(SYSTEM,COLLEGE))" var="xe"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var1"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="MF_Mapping_Database_select_Mapping">
+        <input path="$xe/db:select(fn:false(),ResultSet(SYSTEM/COLLEGE/ID,SYSTEM/COLLEGE/NAME,SYSTEM/COLLEGE/AGE),db:where('SYSTEM.COLLEGE.ID = 1','?'=OutputRoot/JSON/Data/ram))" var="dbselect"/>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var1/mb:msg(JSON,assembly,JSON,Properties)">
+            <cast castType="userDefined" path="JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}JSONObject" ref="var1"/>
+        </output>
+        <select ref="dbselect">
+            <input path="$dbselect/ResultSet"/>
+            <output path="JSON/Data"/>
+        </select>
+        <expression>
+            <input path="$dbselect/ResultSet/SYSTEM/COLLEGE/ID"/>
+            <output path="JSON/spath('Data',2)"/>
+        </expression>
+    </mappingDeclaration>
+</mappingRoot>

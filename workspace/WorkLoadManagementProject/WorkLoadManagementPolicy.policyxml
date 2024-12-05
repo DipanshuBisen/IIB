@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="WorkloadManagement" policyName="WorkLoadManagementPolicy" policyTemplate="WorkloadManagement">
+    <notificationThresholdMsgsPerSec>1</notificationThresholdMsgsPerSec>
+    <maximumRateMsgsPerSec>0</maximumRateMsgsPerSec>
+    <processingTimeoutSec>1</processingTimeoutSec>
+    <processingTimeoutAction>none</processingTimeoutAction>
+    <additionalInstances>100</additionalInstances>
+    <startInstancesWhenFlowStarts>true</startInstancesWhenFlowStarts>
+    <commitCount>1</commitCount>
+    <commitInterval>0</commitInterval>
+    <startMode>Maintained</startMode>
+  </policy>
+</policies>
